@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block css %}
+  <!-- Custom styles for this template  -->
+  <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+
+{% block content %}
+    <form class="form-signin" action="" method="post">
+        <img class="form-img" src="{{ url_for('static', filename='p2p.png') }}" alt="" width="72" height="72">
+        <h1 class="h3 form-head font-weight-normal">Please sign in</h1>
+        <!-- <label for="inputEmail" class="sr-only">Email address</label>
+        <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+        <div class="checkbox mb-3">
+        <label>
+            <input value="remember-me" type="checkbox"> Remember me
+        </label>
+        </div>         
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->   
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.username.label(class_="sr-only") }}
+            {{ form.username(class_="form-control",placeholder="username") }}
+
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label(class_="sr-only") }}
+            {{ form.password(class_="form-control",placeholder="password") }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}            
+        </p>
+
+        <div class="checkbox form-head">
+                {{ form.remember_me() }} {{ form.remember_me.label }}
+        </div>   
+
+        <p>{{ form.submit(class_="btn btn-lg btn-primary btn-block") }}</p>
+
+    </form>
+{% endblock %}

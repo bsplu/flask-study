@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% if title %}
+  <title>{{ title }} - P2P</title>
+  {% else %}
+  <title>Welcome to P2P</title>
+  {% endif %}
+
+  <!-- Bootstrap core CSS -->
+
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" >
+  {% block css %} 
+<!-- insert css -->
+  {% endblock %}
+</head>
+
+
+    <body>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+
+      {% block content %} 
+      <!-- insert -->
+      {% endblock %}
+    </body>
+</html>
